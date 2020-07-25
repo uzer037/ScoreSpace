@@ -17,12 +17,16 @@ public class Energy : MonoBehaviour
 
     void FixedUpdate()
     {
-        spentEnergy.sizeDelta = new Vector2(energyBar.rect.width * energy, spentEnergy.rect.height);
-        energy -= deltaEnergy;
         if (energy < 0)
         {
             exhausted = true;
             energy = 0;
         }
+        else if (energy > 1)
+        {
+            energy = 1;
+        }
+        spentEnergy.sizeDelta = new Vector2(energyBar.rect.width * energy, spentEnergy.rect.height);
+        energy -= deltaEnergy;
     }
 }
