@@ -8,7 +8,7 @@ public class Energy : MonoBehaviour
     public float deltaEnergy = 0.01f;
     RectTransform energyBar;
     RectTransform spentEnergy;
-    bool full = false;
+    public bool full = false;
     void Start()
     {
         energyBar = GetComponentsInChildren<RectTransform>()[2];
