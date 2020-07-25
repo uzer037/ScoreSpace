@@ -21,14 +21,23 @@ public class PlayerMovement : MonoBehaviour
             return b;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        bool toInvoke = false;
         if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
         {
             playerPos += new Vector2Int(Mathf.RoundToInt(Input.GetAxisRaw("Horizontal")), Mathf.RoundToInt(Input.GetAxisRaw("Vertical")));
-            oneTurn.Invoke();
+            toInvoke = true;
         }
         transform.position = SLerp(transform.position, new Vector3(playerPos.x, 0, playerPos.y), Time.deltaTime*5, 0.01f);
+        if (toInvoke) //! CHANGE
+        {
+            Invoke("OneTurnInvoke", 0.5f); //! MAGIC CONSTANT OMG SO BAD
+        }
+    }
+
+    void OneTurnInvoke() //! DELETE
+    {
+        oneTurn.Invoke();
     }
 }
