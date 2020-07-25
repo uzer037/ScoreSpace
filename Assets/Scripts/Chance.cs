@@ -15,8 +15,8 @@ public class Chance : MonoBehaviour
     
     public void ChangeChance()
     {
-        chance += Random.Range(0, 50);
-        if (chance > 100)
+        chance += Random.Range(0, 100);
+        if (chance >= 100)
         {
             chance -= 100;
         }
