@@ -1,28 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    public GameObject player;
     public GameObject energy;
-    public string sceneAfterDeath = "SampleScene";
+    public GameObject wind;
+    public GameObject avalancheChance;
     bool dead = false;
     void Start()
     {
     }
 
+    // Update is called once per frame
     void Update()
     {
-        dead = energy.GetComponent<Energy>().full;
-        if (dead)
-        {
-            Death();
-        }
-    }
-
-    void Death()
-    {
-        SceneManager.LoadScene(sceneAfterDeath);
+        // dead = energy.Ge
     }
 }
