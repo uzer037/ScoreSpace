@@ -11,8 +11,10 @@ public class Avalanche : MonoBehaviour
     public float width = 0.5f;
     public int spread = 10;
     public int count = 3;
+    public float energyDamage = 0.1f;
     public float chance = 0;
     public GameObject player;
+    public GameObject energy;
     int[] avalanches;
 
     void Start()
@@ -39,7 +41,6 @@ public class Avalanche : MonoBehaviour
 
     void LaunchAvalanches()
     {
-        Debug.Log("OMG AVALANCHES!1!!11!");
         foreach (int i in avalanches)
         {
             CheckHit(i);
@@ -48,12 +49,8 @@ public class Avalanche : MonoBehaviour
 
     void CreateAvalanches()
     {
-        avalanches = Enumerable.Range(-spread, 2 * spread + 1).
+        avalanches = Enumerable.Range(-spread, 2 * spread + 1). // a bad way to get random avalanches
                      OrderBy(x => System.Guid.NewGuid()).Take(count).ToArray();
-        foreach (int i in avalanches)
-        {
-            Debug.Log(i);
-        }
     }
 
     void CheckHit(int pos)
@@ -61,7 +58,7 @@ public class Avalanche : MonoBehaviour
         float playerX = player.transform.position.x;
         if (playerX > pos * width - width / 2 && playerX < pos * width + width / 2)
         {
-            Debug.Log("HIT YA");
+            energy.GetComponent<Energy>().energy -= energyDamage;
         };
     }
 }

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Energy : MonoBehaviour
 {
-    float energy = 0;
+    public float energy = 1;
     public float deltaEnergy = 0.01f;
     RectTransform energyBar;
     RectTransform spentEnergy;
-    public bool full = false;
+    public bool exhausted = false;
     void Start()
     {
         energyBar = GetComponentsInChildren<RectTransform>()[2];
@@ -18,11 +18,11 @@ public class Energy : MonoBehaviour
     void FixedUpdate()
     {
         spentEnergy.sizeDelta = new Vector2(energyBar.rect.width * energy, spentEnergy.rect.height);
-        energy += deltaEnergy;
-        if (energy > 1)
+        energy -= deltaEnergy;
+        if (energy < 0)
         {
-            full = true;
-            energy = 1;
+            exhausted = true;
+            energy = 0;
         }
     }
 }

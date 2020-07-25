@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        dead = energy.GetComponent<Energy>().full;
+        dead = energy.GetComponent<Energy>().exhausted;
         if (dead)
         {
             Death();
